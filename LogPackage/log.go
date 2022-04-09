@@ -21,15 +21,23 @@ func main() {
 	PrintBr()
 	log.SetFlags(3)
 
-	//io.Discard doesn't show logs even log.Fatal
+	//io.Discard doesn't show logs even log.Fatal:
 	log.SetOutput(io.Discard)
 	log.Println("SetOutput(io.Discard)")
 	//Output:
 
-	//os.Stdout show logs on the terminal
+	//os.Stdout show logs on the terminal:
 	log.SetOutput(os.Stdout)
 	PrintBr()
 
+	//save log into file:
+	//If the file doesn't exist, create it or append to the file
+	file, _ := os.OpenFile("LogPackage\\log.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 1)
+	log.SetOutput(file)
+	log.Println("loged info in file.")
+	log.SetOutput(os.Stdout)
+
+	//fatal:
 	defer log.Println("defer log.Println with log.Fatal")
 	//to hard exit without running the defer
 	log.Fatal("Hard Exit")
