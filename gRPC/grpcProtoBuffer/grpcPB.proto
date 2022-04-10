@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package grpc;
+option go_package = "./grpc/grpcProtoBuffer";
+
+service grpcService {}
+
+// to generate go file from proto file , type:
+// .\protoc -I=gRPC/grpcProtoBuffer --go_out=. grpcPB.proto
+// https://developers.google.com/protocol-buffers/docs/gotutorial

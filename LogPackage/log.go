@@ -42,7 +42,6 @@ func main() {
 	//to hard exit without running the defer
 	log.Fatal("Hard Exit")
 	//Output: 19:11:43.062693 Hard Exit
-
 }
 func PrintBr() {
 	fmt.Println("---------------------------------------------------------------------------------------------------")
