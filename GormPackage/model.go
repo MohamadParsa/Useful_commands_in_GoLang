@@ -27,6 +27,59 @@ type Model struct {
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
+
+// Embedded Struct
+// For anonymous fields, GORM will include its fields into its parent struct, for example:
+type UserWithModel struct {
+	gorm.Model
+	Name string
+}
+
+// equals
+// type UserWithModel struct {
+// 	ID        uint           `gorm:"primaryKey"`
+// 	CreatedAt time.Time
+// 	UpdatedAt time.Time
+// 	DeletedAt gorm.DeletedAt `gorm:"index"`
+// 	Name string
+//   }
+
+// For a normal struct field, you can embed it with the tag embedded, for example:
+
+type Author struct {
+	Name  string
+	Email string
+}
+
+type Blog struct {
+	ID      int
+	Author  Author `gorm:"embedded"`
+	Upvotes int32
+}
+
+// equals
+// type Blog struct {
+//   ID    int64
+//   Name  string
+//   Email string
+//   Upvotes  int32
+// }
+
+// And you can use tag embeddedPrefix to add prefix to embedded fields’ db name, for example:
+
+// type Blog struct {
+//   ID      int
+//   Author  Author `gorm:"embedded;embeddedPrefix:author_"`
+//   Upvotes int32
+// }
+// // equals
+// type Blog struct {
+//   ID          int64
+//   AuthorName  string
+//   AuthorEmail string
+//   Upvotes     int32
+// }
+
 type UserWithOtherColName struct {
 	CreatedAt time.Time // Set to current time if it is zero on creating
 	UpdatedAt int       // Set to current unix seconds on updating or if it is zero on creating
