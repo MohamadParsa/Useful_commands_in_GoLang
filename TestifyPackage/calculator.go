@@ -17,6 +17,6 @@ func Mul(x, y int) int {
 }
 
 // Div function divide two numbers and return the result.
-func div(x, y int) int {
+func Div(x, y int) int {
 	return x / y
 }
