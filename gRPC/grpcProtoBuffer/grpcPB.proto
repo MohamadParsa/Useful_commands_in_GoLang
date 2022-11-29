@@ -7,4 +7,5 @@ service grpcService {}
 
 // to generate go file from proto file , type:
 // .\protoc -I=gRPC/grpcProtoBuffer --go_out=. grpcPB.proto
+// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpcPB.proto
 // https://developers.google.com/protocol-buffers/docs/gotutorial

@@ -2,6 +2,14 @@ package core
 
 import "encoding/json"
 
+func SearchNoVersion() []byte {
+	type solution struct {
+		Name string `json:"name"`
+	}
+	res := solution{Name: "solution0"}
+	jsonResult, _ := json.Marshal(res)
+	return jsonResult
+}
 func SearchVersion1() []byte {
 	type solution struct {
 		Name    string `json:"name"`

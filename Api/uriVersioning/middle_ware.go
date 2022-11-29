@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	core "Useful_commands_in_GoLang/Api/uriVersioning/core"
+	core "Useful_commands_in_GoLang/Api/core"
 
 	"github.com/gorilla/mux"
 )
