@@ -3,12 +3,18 @@ package main
 import "fmt"
 
 func main() {
+	tr := NewTransaction("sende", "recipient", "hi")
 
 	blockChain := NewBlockChain()
-	b := blockChain.CreateBlock(100, blockChain.GetLastBlock().Hash())
-	fmt.Println(b.Hash())
-	b = blockChain.CreateBlock(150, blockChain.GetLastBlock().Hash())
-	fmt.Println(b.Hash())
+	blockChain.AddTransaction(tr)
 
-	blockChain.PrintChain()
+	nonce := blockChain.ProofOfWork()
+	fmt.Println(nonce)
+	blockChain.CreateBlock(nonce, blockChain.GetLastBlock().Hash())
+	nonce = blockChain.ProofOfWork()
+
+	blockChain.CreateBlock(nonce, blockChain.GetLastBlock().Hash())
+
+	blockChain.Print()
+
 }
