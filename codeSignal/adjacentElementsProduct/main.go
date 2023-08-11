@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(solution([]int{3, 6, -2, -5, 7, 3}))
+	fmt.Println(solution([]int{-23, 4, -3, 8, -12}))
 }
 
 func solution(inputArray []int) int {
@@ -13,10 +13,10 @@ func solution(inputArray []int) int {
 	}
 	s := 0
 	if len(inputArray) > 2 {
-		s = solution(inputArray[2:])
+		s = solution(inputArray[1:])
+		if inputArray[0]*inputArray[1] < s {
+			return s
+		}
 	}
-	if inputArray[0]*inputArray[1] < s {
-		return s
-	}
-	return solution(inputArray[0:1]) * solution(inputArray[1:2])
+	return inputArray[0] * inputArray[1]
 }
